@@ -14,6 +14,8 @@ mongoose
   .then(() => console.log('connected to mongodb'))
   .catch((err) => console.log(err));
 
+app.use('/posts', require('./routes/posts'));
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`server is running on port ${port}`);
