@@ -16,11 +16,17 @@ router.post('/', (req, res) => {
     .then(() => {
       res.status(200).json({ msg: 'success' });
     })
-    .catch((err) => res.status(400).json({ msg: "could'nt save post" }));
+    .catch((err) => res.status(400).json({ msg: "couldn't save post" }));
 });
 
-router.get('/test', (req, res) => {
-  res.send('working');
+router.get('/', async (req, res) => {
+  const posts = await Post.find();
+  res.json(posts);
+});
+
+router.get('/:id', async (req, res) => {
+  const post = await Post.findById(req.params.id);
+  res.json(post);
 });
 
 module.exports = router;
