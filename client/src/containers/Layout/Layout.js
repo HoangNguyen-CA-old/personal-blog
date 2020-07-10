@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Navbar from '../Navbar/Navbar';
+
 export class Layout extends Component {
   render() {
-    return <>{this.props.children}</>;
+    return (
+      <>
+        <Navbar></Navbar>
+        {this.props.children}
+      </>
+    );
   }
 }
 
