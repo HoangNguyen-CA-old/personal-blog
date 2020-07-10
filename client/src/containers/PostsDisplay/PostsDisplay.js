@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import Posts from '../../components/Posts/Posts';
 
+import Hero from '../../components/Hero/Hero';
+
 import { getPosts, setFocusedPost } from '../../store/actions/postActions';
 export class PostsDisplay extends Component {
   componentDidMount() {
@@ -14,14 +16,22 @@ export class PostsDisplay extends Component {
     this.props.history.push('/article');
   };
   render() {
-    return (
-      <>
-        <Posts
-          posts={this.props.posts}
-          setFocused={this.handleSetFocused}
-        ></Posts>
-      </>
-    );
+    let content = <p>No articles found</p>;
+    if (this.props.posts.length !== 0) {
+      content = (
+        <>
+          <Hero
+            post={this.props.posts[0]}
+            setFocused={this.handleSetFocused}
+          ></Hero>
+          <Posts
+            posts={this.props.posts}
+            setFocused={this.handleSetFocused}
+          ></Posts>
+        </>
+      );
+    }
+    return <>{content}</>;
   }
 }
 

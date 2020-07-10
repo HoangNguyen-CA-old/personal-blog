@@ -1,0 +1,32 @@
+@import '../../theme';
+
+.Hero {
+  width: 100%;
+  height: 25em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $secondary-color;
+}
+
+.Hero:hover {
+  cursor: pointer;
+}
+
+.Header {
+  font-size: 3rem;
+  color: white;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: 0.2s ease-out;
+}
+
+.Hero:hover .Header {
+  border-bottom: 2px solid $light;
+}
+
+.SubHeader {
+  font-size: 1.2rem;
+  color: white;
+}

@@ -4,7 +4,8 @@ import Post from './Post/Post';
 import styles from './Posts.module.scss';
 
 const Posts = (props) => {
-  const posts = props.posts.map((post) => {
+  const posts = props.posts.map((post, index) => {
+    if (index === 0) return null;
     return (
       <Post
         key={post._id}
