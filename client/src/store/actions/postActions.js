@@ -2,6 +2,7 @@ import {
   GET_POSTS_START,
   GET_POSTS_SUCCESS,
   GET_POSTS_FAIL,
+  SET_FOCUSED_POST,
 } from './actionTypes';
 import axios from 'axios';
 
@@ -21,4 +22,8 @@ export const getPosts = () => (dispatch) => {
         error: err,
       });
     });
+};
+
+export const setFocusedPost = (post) => {
+  return { type: SET_FOCUSED_POST, post };
 };

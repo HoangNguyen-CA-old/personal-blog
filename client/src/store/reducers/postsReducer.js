@@ -2,11 +2,13 @@ import {
   GET_POSTS_FAIL,
   GET_POSTS_SUCCESS,
   GET_POSTS_START,
+  SET_FOCUSED_POST,
 } from '../actions/actionTypes';
 import { updateObject } from '../util';
 
 const initialState = {
   posts: [],
+  focusedPost: null,
   loading: false,
   error: null,
 };
@@ -27,6 +29,8 @@ const postReducer = (state = initialState, action) => {
         loading: false,
         error: action.error,
       });
+    case SET_FOCUSED_POST:
+      return updateObject(state, { focusedPost: action.post });
     default:
       return state;
   }

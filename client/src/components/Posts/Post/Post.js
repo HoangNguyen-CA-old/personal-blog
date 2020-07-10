@@ -4,7 +4,7 @@ import styles from './Post.module.scss';
 
 const Post = (props) => {
   return (
-    <div className={styles.Post}>
+    <div className={styles.Post} onClick={props.clicked}>
       <img
         src={props.image}
         className={styles.Image}

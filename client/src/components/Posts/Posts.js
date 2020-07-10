@@ -11,6 +11,7 @@ const Posts = (props) => {
         title={post.title}
         createdAt={post.createdAt}
         markDown={post.markDown}
+        clicked={() => props.setFocused(post)}
       ></Post>
     );
   });
