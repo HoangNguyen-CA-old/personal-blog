@@ -1,7 +1,24 @@
 @import '../../../theme';
 
-.MarkDownContainer {
-  h1 {
-    font-weight: 500;
-  }
+.Post {
+  width: 100%;
+  background-color: $light;
+  border-radius: 5px;
+  transition: box-shadow 0.05s ease-out;
+  overflow: hidden;
+}
+
+.Post:hover {
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.Image {
+  display: block;
+  width: 100%;
+}
+
+.TitleContainer {
+  padding: 1rem;
+  text-align: center;
 }

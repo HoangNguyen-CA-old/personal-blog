@@ -10,14 +10,13 @@ import { getPosts } from './store/actions/postActions';
 
 function App(props) {
   return (
-    <Layout>
-      <Router>
+    <Router>
+      <Layout>
         <Switch>
-          <Route path='/posts' />
-          <Route exact path='/' component={PostsDisplay} />
+          <Route path='/' component={PostsDisplay} />
         </Switch>
-      </Router>
-    </Layout>
+      </Layout>
+    </Router>
   );
 }
 

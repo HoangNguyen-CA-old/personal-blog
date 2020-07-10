@@ -1,6 +1,8 @@
 import React from 'react';
 import Post from './Post/Post';
 
+import styles from './Posts.module.scss';
+
 const Posts = (props) => {
   const posts = props.posts.map((post) => {
     return (
@@ -12,7 +14,7 @@ const Posts = (props) => {
       ></Post>
     );
   });
-  return <div>{posts}</div>;
+  return <div className={styles.Posts}>{posts}</div>;
 };
 
 export default Posts;

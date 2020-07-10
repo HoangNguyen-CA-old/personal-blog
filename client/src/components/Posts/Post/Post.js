@@ -1,15 +1,18 @@
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
 
 import styles from './Post.module.scss';
 
-const input = '# This is a header\n\nAnd this is a paragraph \n ### wow';
-
 const Post = (props) => {
   return (
-    <div className={styles.MarkDownContainer}>
-      <h1>{props.title}</h1>
-      <ReactMarkdown source={input}></ReactMarkdown>
+    <div className={styles.Post}>
+      <img
+        src={props.image}
+        className={styles.Image}
+        src='https://www.digitalvidya.com/wp-content/uploads/2019/03/personal-blog.jpg'
+      ></img>
+      <div className={styles.TitleContainer}>
+        <p className={styles.Title}>{props.title}</p>
+      </div>
     </div>
   );
 };
