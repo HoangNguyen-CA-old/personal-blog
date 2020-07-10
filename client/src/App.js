@@ -1,10 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  BrowserRouter,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -17,12 +12,12 @@ function App(props) {
     props.getPosts();
   }, []);
   return (
-    <BrowserRouter>
+    <Router>
       <Switch>
         <Route path='/posts' />
         <Route exact path='/' component={PostsDisplay} />
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 }
 

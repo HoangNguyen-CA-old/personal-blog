@@ -5,7 +5,11 @@ import Posts from '../../components/Posts/Posts';
 
 export class PostsDisplay extends Component {
   render() {
-    return <Posts posts={this.props.posts}></Posts>;
+    return (
+      <>
+        <Posts posts={this.props.posts}></Posts>
+      </>
+    );
   }
 }
 

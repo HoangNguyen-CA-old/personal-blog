@@ -3,12 +3,13 @@ const router = require('express').Router();
 const Post = require('../models/post');
 
 router.post('/', (req, res) => {
-  const { title, tags, html } = req.body;
+  const { title, tags, markDown, image } = req.body;
 
   const newPost = new Post({
     title,
+    image,
     tags,
-    html,
+    markDown,
   });
 
   newPost

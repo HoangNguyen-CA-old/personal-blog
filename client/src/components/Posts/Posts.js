@@ -3,7 +3,14 @@ import Post from './Post/Post';
 
 const Posts = (props) => {
   const posts = props.posts.map((post) => {
-    return <Post title={post.title} createdAt={post.createdAt}></Post>;
+    return (
+      <Post
+        key={post._id}
+        title={post.title}
+        createdAt={post.createdAt}
+        markDown={post.markDown}
+      ></Post>
+    );
   });
   return <div>{posts}</div>;
 };
