@@ -8,6 +8,8 @@ import {
 
 import { connect } from 'react-redux';
 
+import PostsDisplay from './containers/PostsDisplay/PostsDisplay';
+
 import { getPosts } from './store/actions/postActions';
 
 function App(props) {
@@ -18,6 +20,7 @@ function App(props) {
     <BrowserRouter>
       <Switch>
         <Route path='/posts' />
+        <Route exact path='/' component={PostsDisplay} />
       </Switch>
     </BrowserRouter>
   );
