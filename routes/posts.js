@@ -20,6 +20,20 @@ router.post('/', (req, res) => {
     .catch((err) => res.status(400).json({ msg: "couldn't save post" }));
 });
 
+router.put('/', (req, res) => {
+  const { title, tags, markDown, image, _id } = req.body;
+  if (title == null || tags == null || markDown == null || image == null) {
+    res.status(400).json({ msg: 'information missing' });
+  }
+  Post.findByIdAndUpdate(_id, { markDown, title, tags, image })
+    .then(() => {
+      res.json({ msg: 'success' });
+    })
+    .catch((err) => res.json({ msg: "coudln't update post" }));
+});
+
+router.delete('/', (req, res) => {});
+
 router.get('/', async (req, res) => {
   const posts = await Post.find();
   res.json(posts);
