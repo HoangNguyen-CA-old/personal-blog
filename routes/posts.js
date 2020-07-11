@@ -20,19 +20,27 @@ router.post('/', (req, res) => {
     .catch((err) => res.status(400).json({ msg: "couldn't save post" }));
 });
 
-router.put('/', (req, res) => {
-  const { title, tags, markDown, image, _id } = req.body;
+router.put('/:id', (req, res) => {
+  const { title, tags, markDown, image } = req.body;
   if (title == null || tags == null || markDown == null || image == null) {
     res.status(400).json({ msg: 'information missing' });
   }
-  Post.findByIdAndUpdate(_id, { markDown, title, tags, image })
+  Post.findByIdAndUpdate(req.params.id, { markDown, title, tags, image })
     .then(() => {
       res.json({ msg: 'success' });
     })
-    .catch((err) => res.json({ msg: "coudln't update post" }));
+    .catch(() => res.json({ msg: "couldn't update post" }));
 });
 
-router.delete('/', (req, res) => {});
+router.delete('/:id', (req, res) => {
+  Post.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.json({ msg: 'success' });
+    })
+    .catch(() => {
+      res.status(400).json({ msg: "couldn't delete post" });
+    });
+});
 
 router.get('/', async (req, res) => {
   const posts = await Post.find();
