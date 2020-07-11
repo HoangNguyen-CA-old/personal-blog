@@ -16,7 +16,16 @@ const Posts = (props) => {
       ></Post>
     );
   });
-  return <div className={styles.Posts}>{posts}</div>;
+  return (
+    <div className={styles.Posts}>
+      {posts}
+      {posts}
+      {posts}
+      {posts}
+      {posts}
+      {posts}
+    </div>
+  );
 };
 
 export default Posts;

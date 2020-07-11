@@ -10,7 +10,7 @@
   background-color: $secondary-color;
 }
 
-.Hero:hover {
+.HeroHover:hover {
   cursor: pointer;
 }
 
@@ -22,7 +22,7 @@
   transition: 0.2s ease-out;
 }
 
-.Hero:hover .Header {
+.HeroHover:hover .Header {
   border-bottom: 2px solid $light;
 }
 

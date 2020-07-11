@@ -1,0 +1,12 @@
+@import '../../../theme';
+
+.Button {
+  background-color: $primary-color;
+  padding: 0.5em 0.7em;
+  font-size: 1.1rem;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
