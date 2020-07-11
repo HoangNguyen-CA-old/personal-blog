@@ -5,6 +5,8 @@ import { Redirect } from 'react-router-dom';
 
 import ReactMarkdown from 'react-markdown';
 
+import Hero from '../../components/Hero/Hero';
+
 import styles from './FullPost.module.scss';
 
 class FullPost extends Component {
@@ -12,12 +14,14 @@ class FullPost extends Component {
     let content = <Redirect to='/'></Redirect>;
     if (this.props.focusedPost !== null) {
       content = (
-        <div className={styles.MarkDownContainer}>
-          <h1>{this.props.focusedPost.title}</h1>
-          <ReactMarkdown
-            source={this.props.focusedPost.markDown}
-          ></ReactMarkdown>
-        </div>
+        <>
+          <Hero post={this.props.focusedPost}></Hero>
+          <div className={styles.MarkDownContainer}>
+            <ReactMarkdown
+              source={this.props.focusedPost.markDown}
+            ></ReactMarkdown>
+          </div>
+        </>
       );
     }
     return <>{content}</>;

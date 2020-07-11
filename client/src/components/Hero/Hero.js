@@ -6,7 +6,7 @@ const Hero = (props) => {
   let content = null;
   if (props.post) {
     content = (
-      <div className={styles.Hero} onClick={() => props.setFocused(props.post)}>
+      <div className={styles.Hero} onClick={props.clicked}>
         <p className={styles.SubHeader}>Featured Article</p>
         <h2 className={styles.Header}>{props.post.title}</h2>
       </div>

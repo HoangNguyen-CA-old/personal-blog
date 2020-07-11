@@ -22,7 +22,7 @@ export class PostsDisplay extends Component {
         <>
           <Hero
             post={this.props.posts[0]}
-            setFocused={this.handleSetFocused}
+            clicked={() => this.handleSetFocused(this.props.posts[0])}
           ></Hero>
           <Posts
             posts={this.props.posts}
