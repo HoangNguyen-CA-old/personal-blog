@@ -1,33 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Redirect } from 'react-router-dom';
-
-import ReactMarkdown from 'react-markdown';
-
-import Hero from '../../components/Hero/Hero';
-import Controls from './Controls/Controls';
+import FocusedPost from '../../components/FocusedPost/FocusedPost';
 
 import styles from './FullPost.module.scss';
 
 class FullPost extends Component {
-  render() {
-    let content = <Redirect to='/'></Redirect>;
-    if (this.props.focusedPost !== null) {
-      content = (
-        <div>
-          <Hero post={this.props.focusedPost}></Hero>
-          <div className={styles.MarkDownContainer}>
-            <ReactMarkdown
-              source={this.props.focusedPost.markDown}
-            ></ReactMarkdown>
-          </div>
+  state = {
+    markDown: '',
+  };
 
-          <Controls />
-        </div>
-      );
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.focusedPost) {
+      return {
+        markDown: nextProps.focusedPost.markDown,
+      };
     }
-    return <>{content}</>;
+    return;
+  }
+
+  render() {
+    return (
+      <>
+        <FocusedPost focusedPost={this.props.focusedPost} />
+      </>
+    );
   }
 }
 
