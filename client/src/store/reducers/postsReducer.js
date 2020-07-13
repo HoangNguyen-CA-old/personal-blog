@@ -3,6 +3,9 @@ import {
   GET_POSTS_SUCCESS,
   GET_POSTS_START,
   SET_FOCUSED_POST,
+  EDIT_POST_FAIL,
+  EDIT_POST_START,
+  EDIT_POST_SUCCESS,
 } from '../actions/actionTypes';
 import { updateObject } from '../util';
 
@@ -10,6 +13,7 @@ const initialState = {
   posts: [],
   focusedPost: null,
   loading: false,
+  editLoading: false,
   error: null,
 };
 
@@ -31,6 +35,12 @@ const postReducer = (state = initialState, action) => {
       });
     case SET_FOCUSED_POST:
       return updateObject(state, { focusedPost: action.post });
+    case EDIT_POST_START:
+      return updateObject(state, { editLoading: true });
+    case EDIT_POST_SUCCESS:
+      return updateObject(state, { editLoading: false });
+    case EDIT_POST_FAIL:
+      return updateObject(state, { editLoading: false });
     default:
       return state;
   }

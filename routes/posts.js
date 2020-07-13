@@ -23,13 +23,15 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   const { title, tags, markDown, image } = req.body;
   if (title == null || tags == null || markDown == null || image == null) {
-    res.status(400).json({ msg: 'information missing' });
+    return res.status(400).json({ msg: 'information missing' });
   }
   Post.findByIdAndUpdate(req.params.id, { markDown, title, tags, image })
     .then(() => {
-      res.json({ msg: 'success' });
+      return res.json({ msg: 'success' });
     })
-    .catch(() => res.json({ msg: "couldn't update post" }));
+    .catch(() => {
+      return res.json({ msg: "couldn't update post" });
+    });
 });
 
 router.delete('/:id', (req, res) => {

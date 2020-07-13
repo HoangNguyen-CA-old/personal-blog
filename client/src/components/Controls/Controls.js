@@ -13,6 +13,7 @@ const Controls = (props) => {
   if (props.editing) {
     content = (
       <>
+        <Button onClick={props.editPost}>Edit Post</Button>
         <Button onClick={props.toggleEdit}>Stop Editing</Button>
       </>
     );

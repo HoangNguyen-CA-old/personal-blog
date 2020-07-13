@@ -7,6 +7,8 @@ import FocusedPost from '../../components/FocusedPost/FocusedPost';
 import EditedPost from '../../components/EditedPost/EditedPost';
 import Controls from '../../components/Controls/Controls';
 
+import { editPost } from '../../store/actions/postActions';
+
 class FullPost extends Component {
   state = {
     editing: false,
@@ -27,6 +29,7 @@ class FullPost extends Component {
         value: '',
       },
     },
+    tags: [],
     fetched: false,
   };
 
@@ -50,6 +53,16 @@ class FullPost extends Component {
     });
   };
 
+  handleEditPost = () => {
+    this.props.editPost(
+      this.props.focusedPost._id,
+      this.state.controls.title.value,
+      this.state.controls.image.value,
+      this.state.tags,
+      this.state.controls.markDown.value
+    );
+  };
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.focusedPost && prevState.fetched === false) {
       return {
@@ -68,6 +81,7 @@ class FullPost extends Component {
             value: nextProps.focusedPost.image,
           },
         },
+        tags: nextProps.focusedPost.tags,
         fetched: true,
       };
     }
@@ -87,6 +101,7 @@ class FullPost extends Component {
             <Controls
               toggleEdit={this.handleToggleEdit}
               editing={this.state.editing}
+              editPost={this.handleEditPost}
             />
           </>
         );
@@ -110,6 +125,9 @@ const mapStateToProps = (state) => ({
   focusedPost: state.posts.focusedPost,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  editPost: (id, title, image, tags, markDown) =>
+    editPost(id, title, image, tags, markDown),
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FullPost);
