@@ -6,7 +6,7 @@ import FormInputs from '../UI/FormInputs/FormInputs';
 
 const EditedPost = (props) => {
   return (
-    <div>
+    <div className={styles.EditedPost}>
       <FormInputs
         controls={props.controls}
         handleInputChanged={props.handleInputChanged}

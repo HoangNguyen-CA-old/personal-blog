@@ -10,7 +10,6 @@ class FullPost extends Component {
   state = {
     controls: {
       markDown: {
-        label: 'MarkDown',
         type: 'textarea',
         config: {},
         value: '',
