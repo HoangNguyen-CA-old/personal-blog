@@ -3,9 +3,9 @@ import styles from './NavLink.module.scss';
 
 const NavLink = (props) => {
   return (
-    <a onClick={props.clicked} className={styles.NavLink}>
+    <button onClick={props.clicked} className={styles.NavLink}>
       {props.children}
-    </a>
+    </button>
   );
 };
 

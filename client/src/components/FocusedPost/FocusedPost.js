@@ -5,17 +5,14 @@ import styles from './FocusedPost.module.scss';
 import ReactMarkdown from 'react-markdown';
 
 import Hero from '../Hero/Hero';
-import Controls from './Controls/Controls';
 
 const FocusedPost = (props) => {
   return (
-    <div>
+    <div className={styles.FocusedPost}>
       <Hero post={props.focusedPost}></Hero>
       <div className={styles.MarkDownContainer}>
         <ReactMarkdown source={props.focusedPost.markDown}></ReactMarkdown>
       </div>
-
-      <Controls />
     </div>
   );
 };

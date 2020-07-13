@@ -5,10 +5,11 @@ import { Redirect } from 'react-router-dom';
 
 import FocusedPost from '../../components/FocusedPost/FocusedPost';
 import EditedPost from '../../components/EditedPost/EditedPost';
+import Controls from '../../components/Controls/Controls';
 
 class FullPost extends Component {
   state = {
-    editing: true,
+    editing: false,
     controls: {
       title: {
         type: 'input',
@@ -29,6 +30,12 @@ class FullPost extends Component {
     fetched: false,
   };
 
+  handleToggleEdit = () => {
+    this.setState((prevState) => {
+      return { editing: !prevState.editing };
+    });
+  };
+
   handleInputChanged = (event, controlName) => {
     const updatedControls = {
       ...this.state.controls,
@@ -44,7 +51,7 @@ class FullPost extends Component {
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.focusedPost && prevState.fetched == false) {
+    if (nextProps.focusedPost && prevState.fetched === false) {
       return {
         controls: {
           ...prevState.controls,
@@ -72,13 +79,27 @@ class FullPost extends Component {
     if (this.props.focusedPost !== null) {
       if (this.state.editing) {
         content = (
-          <EditedPost
-            controls={this.state.controls}
-            handleInputChanged={this.handleInputChanged}
-          />
+          <>
+            <EditedPost
+              controls={this.state.controls}
+              handleInputChanged={this.handleInputChanged}
+            />
+            <Controls
+              toggleEdit={this.handleToggleEdit}
+              editing={this.state.editing}
+            />
+          </>
         );
       } else {
-        content = <FocusedPost focusedPost={this.props.focusedPost} />;
+        content = (
+          <>
+            <FocusedPost focusedPost={this.props.focusedPost} />
+            <Controls
+              toggleEdit={this.handleToggleEdit}
+              editing={this.state.editing}
+            />
+          </>
+        );
       }
     }
     return <>{content}</>;
