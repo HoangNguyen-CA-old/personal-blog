@@ -6,17 +6,27 @@ import { Redirect } from 'react-router-dom';
 import FocusedPost from '../../components/FocusedPost/FocusedPost';
 import EditedPost from '../../components/EditedPost/EditedPost';
 
-import styles from './FullPost.module.scss';
-
 class FullPost extends Component {
   state = {
+    editing: true,
     controls: {
+      title: {
+        type: 'input',
+        config: {},
+        value: '',
+      },
+      image: {
+        type: 'input',
+        config: {},
+        value: '',
+      },
       markDown: {
         type: 'textarea',
         config: {},
         value: '',
       },
     },
+    fetched: false,
   };
 
   handleInputChanged = (event, controlName) => {
@@ -31,32 +41,47 @@ class FullPost extends Component {
     this.setState({
       controls: updatedControls,
     });
-    console.log(this.state.controls);
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.focusedPost) {
+    if (nextProps.focusedPost && prevState.fetched == false) {
       return {
-        markDown: nextProps.focusedPost.markDown,
+        controls: {
+          ...prevState.controls,
+          markDown: {
+            ...prevState.controls.markDown,
+            value: nextProps.focusedPost.markDown,
+          },
+          title: {
+            ...prevState.controls.title,
+            value: nextProps.focusedPost.title,
+          },
+          image: {
+            ...prevState.controls.image,
+            value: nextProps.focusedPost.image,
+          },
+        },
+        fetched: true,
       };
     }
-    return;
+    return prevState;
   }
 
   render() {
     let content = <Redirect to='/'></Redirect>;
     if (this.props.focusedPost !== null) {
-      content = <FocusedPost focusedPost={this.props.focusedPost} />;
+      if (this.state.editing) {
+        content = (
+          <EditedPost
+            controls={this.state.controls}
+            handleInputChanged={this.handleInputChanged}
+          />
+        );
+      } else {
+        content = <FocusedPost focusedPost={this.props.focusedPost} />;
+      }
     }
-    return (
-      <>
-        {content}
-        <EditedPost
-          controls={this.state.controls}
-          handleInputChanged={this.handleInputChanged}
-        />
-      </>
-    );
+    return <>{content}</>;
   }
 }
 

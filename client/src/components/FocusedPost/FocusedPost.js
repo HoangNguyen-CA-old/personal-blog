@@ -2,8 +2,6 @@ import React from 'react';
 
 import styles from './FocusedPost.module.scss';
 
-import { Redirect } from 'react-router-dom';
-
 import ReactMarkdown from 'react-markdown';
 
 import Hero from '../Hero/Hero';
