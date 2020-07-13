@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { Redirect } from 'react-router-dom';
+
 import FocusedPost from '../../components/FocusedPost/FocusedPost';
 import EditedPost from '../../components/EditedPost/EditedPost';
 
@@ -42,9 +44,13 @@ class FullPost extends Component {
   }
 
   render() {
+    let content = <Redirect to='/'></Redirect>;
+    if (this.props.focusedPost !== null) {
+      content = <FocusedPost focusedPost={this.props.focusedPost} />;
+    }
     return (
       <>
-        <FocusedPost focusedPost={this.props.focusedPost} />
+        {content}
         <EditedPost
           controls={this.state.controls}
           handleInputChanged={this.handleInputChanged}
