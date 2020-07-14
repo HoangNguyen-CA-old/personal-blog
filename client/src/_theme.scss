@@ -7,3 +7,15 @@ $gray: #aaa;
 $dark: #333;
 
 $main-font: Verdana, Geneva, Tahoma, sans-serif;
+
+$breakpoint-tablet: (
+  min-width: 660px,
+);
+
+$breakpoint-laptop: (
+  min-width: 1200px,
+);
+
+$breakpoint-desktop: (
+  min-width: 1920px,
+);

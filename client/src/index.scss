@@ -1,3 +1,5 @@
+@import './theme';
+
 * {
   margin: 0;
   padding: 0;
@@ -6,4 +8,23 @@
 
 html {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 100%;
+}
+
+@media only screen and ($breakpoint-tablet) {
+  html {
+    font-size: 110%;
+  }
+}
+
+@media only screen and ($breakpoint-laptop) {
+  html {
+    font-size: 130%;
+  }
+}
+
+@media only screen and ($breakpoint-desktop) {
+  html {
+    font-size: 140%;
+  }
 }

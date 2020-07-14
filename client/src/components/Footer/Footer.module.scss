@@ -3,4 +3,9 @@
 .Footer {
   height: 5em;
   background-color: $dark;
+  color: $light;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
