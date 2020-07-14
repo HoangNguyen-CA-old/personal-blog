@@ -4,7 +4,7 @@
   width: 100%;
   height: 25em;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   background-color: $secondary-color;
@@ -20,10 +20,16 @@
   font-weight: 500;
   border-bottom: 2px solid transparent;
   transition: 0.2s ease-out;
+  text-align: center;
+  line-height: 99%;
 }
 
 .HeroHover:hover .Header {
   border-bottom: 2px solid $light;
+}
+
+.TextContainer {
+  max-width: 70%;
 }
 
 .SubHeader {
@@ -35,5 +41,6 @@
   font-size: 1rem;
   color: white;
   font-weight: 500;
-  margin-top: 0.5em;
+  margin-top: 1em;
+  text-align: center;
 }

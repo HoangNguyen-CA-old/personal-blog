@@ -12,9 +12,11 @@ const Hero = (props) => {
   if (props.post) {
     content = (
       <div className={HeroClass.join(' ')} onClick={props.clicked}>
-        <p className={styles.SubHeader}>{props.subheader}</p>
-        <h2 className={styles.Header}>{props.post.title}</h2>
-        <p className={styles.Description}>{props.description}</p>
+        <div className={styles.TextContainer}>
+          <p className={styles.SubHeader}>{props.subheader}</p>
+          <h2 className={styles.Header}>{props.post.title}</h2>
+          <p className={styles.Description}>{props.description}</p>
+        </div>
       </div>
     );
   }
