@@ -97,6 +97,7 @@ class FullPost extends Component {
             <EditedPost
               controls={this.state.controls}
               handleInputChanged={this.handleInputChanged}
+              loading={this.props.editLoading}
             />
             <Controls
               toggleEdit={this.handleToggleEdit}
@@ -123,6 +124,7 @@ class FullPost extends Component {
 
 const mapStateToProps = (state) => ({
   focusedPost: state.posts.focusedPost,
+  editLoading: state.posts.editLoading,
 });
 
 const mapDispatchToProps = {
