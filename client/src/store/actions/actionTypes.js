@@ -7,3 +7,7 @@ export const SET_FOCUSED_POST = 'SET_FOCUSED_POST';
 export const EDIT_POST_START = 'EDIT_POST_START';
 export const EDIT_POST_FAIL = 'EDIT_POST_FAIL';
 export const EDIT_POST_SUCCESS = 'EDIT_POST_sUCCESS';
+
+export const GET_POST_START = 'GET_POST_START';
+export const GET_POST_SUCCESS = 'GET_POST_SUCCESS';
+export const GET_POST_FAIL = 'GET_POST_FAIL';

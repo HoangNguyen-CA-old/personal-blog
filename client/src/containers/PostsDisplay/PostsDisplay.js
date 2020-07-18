@@ -7,7 +7,8 @@ import Posts from '../../components/Posts/Posts';
 import Hero from '../../components/Hero/Hero';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
-import { getPosts, setFocusedPost } from '../../store/actions/postActions';
+import { getPosts } from '../../store/actions/postsActions';
+import { setFocusedPost } from '../../store/actions/postActions';
 export class PostsDisplay extends Component {
   componentDidMount() {
     this.props.getPosts();

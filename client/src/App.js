@@ -7,14 +7,14 @@ import PostsDisplay from './containers/PostsDisplay/PostsDisplay';
 import Layout from './containers/Layout/Layout';
 import FullPost from './containers/FullPost/FullPost';
 
-import { getPosts } from './store/actions/postActions';
+import { getPosts } from './store/actions/postsActions';
 
 function App(props) {
   return (
     <Router>
       <Layout>
         <Switch>
-          <Route path='/article' component={FullPost}></Route>
+          <Route path='/article/:id' component={FullPost}></Route>
           <Route path='/' component={PostsDisplay} />
         </Switch>
       </Layout>
