@@ -15,12 +15,11 @@
 }
 
 .Header {
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: white;
   font-weight: 500;
   border-bottom: 2px solid transparent;
   transition: 0.2s ease-out;
-  text-align: center;
   line-height: 99%;
 }
 
@@ -29,7 +28,7 @@
 }
 
 .TextContainer {
-  max-width: 70%;
+  max-width: 80%;
 }
 
 .SubHeader {
@@ -42,5 +41,4 @@
   color: white;
   font-weight: 500;
   margin-top: 1em;
-  text-align: center;
 }
