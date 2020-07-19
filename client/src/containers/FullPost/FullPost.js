@@ -68,8 +68,6 @@ class FullPost extends Component {
     this.props.getPost(id);
   }
 
-  //TODO: NOT SYNCED PROPERlY, HAVE TO GET NEW STATE WHEN NEW POST IS LOADED!!!
-
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.focusedPost !== prevState.focusedPost) {
       return {
