@@ -45,7 +45,7 @@ router.delete('/:id', (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-  const posts = await Post.find();
+  const posts = await Post.find({}, '-markDown');
   res.json(posts);
 });
 

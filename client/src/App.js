@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -7,9 +6,7 @@ import PostsDisplay from './containers/PostsDisplay/PostsDisplay';
 import Layout from './containers/Layout/Layout';
 import FullPost from './containers/FullPost/FullPost';
 
-import { getPosts } from './store/actions/postsActions';
-
-function App(props) {
+function App() {
   return (
     <Router>
       <Layout>
@@ -22,8 +19,4 @@ function App(props) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  getPosts: () => dispatch(getPosts()),
-});
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;
