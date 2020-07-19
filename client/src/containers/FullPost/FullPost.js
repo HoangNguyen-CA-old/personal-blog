@@ -11,6 +11,7 @@ import { editPost, getPost } from '../../store/actions/postActions';
 
 class FullPost extends Component {
   state = {
+    focusedPost: null,
     editing: false,
     controls: {
       title: {
@@ -30,7 +31,6 @@ class FullPost extends Component {
       },
     },
     tags: [],
-    fetched: false,
   };
 
   handleToggleEdit = () => {
@@ -71,7 +71,7 @@ class FullPost extends Component {
   //TODO: NOT SYNCED PROPERlY, HAVE TO GET NEW STATE WHEN NEW POST IS LOADED!!!
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.focusedPost && prevState.fetched === false) {
+    if (nextProps.focusedPost !== prevState.focusedPost) {
       return {
         controls: {
           ...prevState.controls,
@@ -89,7 +89,7 @@ class FullPost extends Component {
           },
         },
         tags: nextProps.focusedPost.tags,
-        fetched: true,
+        focusedPost: nextProps.focusedPost,
       };
     }
     return prevState;
