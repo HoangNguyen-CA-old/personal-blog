@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Navbar from '../Navbar/Navbar';
-import Footer from '../../components/Footer/Footer';
 
 export class Layout extends Component {
   render() {
@@ -10,7 +9,6 @@ export class Layout extends Component {
       <>
         <Navbar></Navbar>
         {this.props.children}
-        <Footer></Footer>
       </>
     );
   }

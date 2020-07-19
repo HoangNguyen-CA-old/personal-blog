@@ -6,7 +6,6 @@ import {
 import axios from 'axios';
 
 export const getPosts = () => (dispatch, getState) => {
-  //if (getState().posts.posts.length === 0) {
   dispatch({ type: GET_POSTS_START });
   axios
     .get('/posts')

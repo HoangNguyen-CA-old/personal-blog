@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import FocusedPost from '../../components/FocusedPost/FocusedPost';
 import EditedPost from '../../components/EditedPost/EditedPost';
 import Controls from '../../components/Controls/Controls';
+import ErrorMessage from '../../components/Error/ErrorMessage';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 import { editPost, getPost } from '../../store/actions/postActions';
 
@@ -92,8 +94,10 @@ class FullPost extends Component {
   }
 
   render() {
-    let content = null;
-    if (this.props.focusedPost !== null) {
+    let content = <ErrorMessage>Post does not exist!</ErrorMessage>;
+    if (this.props.loading) {
+      content = <Spinner />;
+    } else if (this.props.focusedPost !== null) {
       if (this.state.editing) {
         content = (
           <>
@@ -127,6 +131,7 @@ class FullPost extends Component {
 
 const mapStateToProps = (state) => ({
   focusedPost: state.post.post,
+  loading: state.post.loading,
   editLoading: state.post.editLoading,
 });
 

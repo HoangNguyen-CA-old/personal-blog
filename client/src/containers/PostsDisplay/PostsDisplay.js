@@ -6,6 +6,7 @@ import styles from './PostDisplay.module.scss';
 import Posts from '../../components/Posts/Posts';
 import Hero from '../../components/Hero/Hero';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import ErrorMessage from '../../components/Error/ErrorMessage';
 
 import { getPosts } from '../../store/actions/postsActions';
 export class PostsDisplay extends Component {
@@ -18,18 +19,10 @@ export class PostsDisplay extends Component {
   };
   render() {
     let content = (
-      <div className={styles.PostsDisplay}>
-        <p className={styles.TextDisplay}>
-          Couldn't fetch articles from server
-        </p>
-      </div>
+      <ErrorMessage> Couldn't fetch articles from server</ErrorMessage>
     );
     if (this.props.loading) {
-      content = (
-        <div className={styles.PostsDisplay}>
-          <Spinner />
-        </div>
-      );
+      content = <Spinner />;
     }
 
     if (this.props.posts.length !== 0) {
