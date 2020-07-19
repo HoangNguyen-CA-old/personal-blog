@@ -17,6 +17,7 @@ export class PostsDisplay extends Component {
   handleSetFocused = (post) => {
     this.props.history.push(`/article/${post._id}`);
   };
+
   render() {
     let content = (
       <ErrorMessage> Couldn't fetch articles from server</ErrorMessage>

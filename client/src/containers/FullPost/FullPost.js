@@ -114,13 +114,15 @@ class FullPost extends Component {
           </>
         );
       } else {
-        content = (
-          <>
-            <FocusedPost focusedPost={this.props.focusedPost} />
-            <Controls
+        /*
+        <Controls
               toggleEdit={this.handleToggleEdit}
               editing={this.state.editing}
             />
+            */
+        content = (
+          <>
+            <FocusedPost focusedPost={this.props.focusedPost} />
           </>
         );
       }
