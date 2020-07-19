@@ -8,15 +8,13 @@ import Hero from '../../components/Hero/Hero';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
 import { getPosts } from '../../store/actions/postsActions';
-import { setFocusedPost } from '../../store/actions/postActions';
 export class PostsDisplay extends Component {
   componentDidMount() {
     this.props.getPosts();
   }
 
   handleSetFocused = (post) => {
-    this.props.setFocusedPost(post);
-    this.props.history.push('/article');
+    this.props.history.push(`/article/${post._id}`);
   };
   render() {
     let content = (
@@ -60,7 +58,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   getPosts: () => getPosts(),
-  setFocusedPost: (post) => setFocusedPost(post),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostsDisplay);

@@ -1,17 +1,12 @@
 import {
   GET_POST_START,
   GET_POST_FAIL,
-  SET_FOCUSED_POST,
   EDIT_POST_FAIL,
   EDIT_POST_SUCCESS,
   EDIT_POST_START,
   GET_POST_SUCCESS,
 } from './actionTypes';
 import axios from 'axios';
-
-export const setFocusedPost = (post) => {
-  return { type: SET_FOCUSED_POST, post };
-};
 
 export const editPost = (id, title, image, tags, markDown) => (dispatch) => {
   dispatch({ type: EDIT_POST_START });
@@ -28,7 +23,7 @@ export const editPost = (id, title, image, tags, markDown) => (dispatch) => {
 export const getPost = (id) => (dispatch) => {
   dispatch({ type: GET_POST_START });
   axios
-    .get(`posts/${id}`)
+    .get(`/posts/${id}`)
     .then((res) => {
       dispatch({ type: GET_POST_SUCCESS, post: res.data });
     })

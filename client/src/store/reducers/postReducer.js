@@ -1,5 +1,4 @@
 import {
-  SET_FOCUSED_POST,
   EDIT_POST_FAIL,
   EDIT_POST_START,
   EDIT_POST_SUCCESS,
@@ -18,8 +17,6 @@ const initialState = {
 
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_FOCUSED_POST:
-      return updateObject(state, { post: action.post });
     case EDIT_POST_START:
       return updateObject(state, { editLoading: true });
     case EDIT_POST_SUCCESS:

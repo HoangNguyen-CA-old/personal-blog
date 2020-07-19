@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Redirect } from 'react-router-dom';
-
 import FocusedPost from '../../components/FocusedPost/FocusedPost';
 import EditedPost from '../../components/EditedPost/EditedPost';
 import Controls from '../../components/Controls/Controls';
 
-import { editPost } from '../../store/actions/postActions';
+import { editPost, getPost } from '../../store/actions/postActions';
 
 class FullPost extends Component {
   state = {
@@ -63,6 +61,11 @@ class FullPost extends Component {
     );
   };
 
+  componentDidMount() {
+    let id = this.props.match.params.id;
+    this.props.getPost(id);
+  }
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.focusedPost && prevState.fetched === false) {
       return {
@@ -89,7 +92,7 @@ class FullPost extends Component {
   }
 
   render() {
-    let content = <Redirect to='/'></Redirect>;
+    let content = null;
     if (this.props.focusedPost !== null) {
       if (this.state.editing) {
         content = (
@@ -123,13 +126,14 @@ class FullPost extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  focusedPost: state.posts.focusedPost,
-  editLoading: state.posts.editLoading,
+  focusedPost: state.post.post,
+  editLoading: state.post.editLoading,
 });
 
 const mapDispatchToProps = {
   editPost: (id, title, image, tags, markDown) =>
     editPost(id, title, image, tags, markDown),
+  getPost: (id) => getPost(id),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FullPost);
