@@ -14,7 +14,9 @@ const Hero = (props) => {
       <div className={HeroClass.join(' ')} onClick={props.clicked}>
         <div className={styles.TextContainer}>
           <p className={styles.SubHeader}>{props.subheader}</p>
-          <h2 className={styles.Header}>{props.post.title}</h2>
+          <h2 className={styles.Header}>
+            <span className={styles.HeaderContainer}>{props.post.title} </span>
+          </h2>
           <p className={styles.Description}>{props.description}</p>
         </div>
       </div>
