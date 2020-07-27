@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 
+const authMW = require('../middleware/auth');
+
 const User = require('../models/user');
 const jwtSecret = process.env.JWTSecret;
 
@@ -16,15 +18,29 @@ router.post(
     body('username').trim().isAlphanumeric(),
     body('email').isEmail().normalizeEmail(),
     body('password').trim().isAlphanumeric(),
+    body('role').trim().isAlphanumeric(),
   ],
-  (req, res, next) => {
+  authMW,
+  async (req, res, next) => {
     let result = validationResult(req);
     if (!result.isEmpty()) {
       return res.status(400).send(result);
     }
-    const { username, email, password } = req.body;
 
-    User.findOne({ email }).then((user) => {
+    const { username, email, password, role } = req.body;
+
+    try {
+      //check if user is permitted to register another user
+      const admin = await User.findById(req.user.id);
+      if (admin.role !== 'admin') {
+        const error = new Error('user not authorized');
+        error.status = 403;
+        return next(error);
+      }
+
+      //Check if user exists, then register user
+      let user = await User.findOne({ email });
+
       if (user) {
         const error = new Error('user already exists');
         error.status = 400;
@@ -35,6 +51,7 @@ router.post(
         username,
         email,
         password,
+        role,
       });
 
       bcrypt.genSalt(10, (saltErr, salt) => {
@@ -70,7 +87,9 @@ router.post(
             });
         });
       });
-    });
+    } catch (err) {
+      return next(err);
+    }
   }
 );
 
