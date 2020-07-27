@@ -20,6 +20,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use('/posts', require('./routes/posts'));
+app.use('/users', require('./routes/users'));
 
 //serve index.html if in production
 
