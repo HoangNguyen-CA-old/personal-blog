@@ -31,6 +31,7 @@ router.post('/', (req, res, next) => {
       jwt.sign(
         {
           id: user.id,
+          role: user.role,
         },
         jwtSecret,
         { expiresIn: tokenExpiry },

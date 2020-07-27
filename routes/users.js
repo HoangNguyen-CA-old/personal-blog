@@ -31,7 +31,7 @@ router.post(
 
     try {
       //check if user is permitted to register another user
-      const admin = await User.findById(req.user.id);
+      const admin = req.user;
       if (admin.role !== 'admin') {
         const error = new Error('user not authorized');
         error.status = 403;
@@ -66,6 +66,7 @@ router.post(
               jwt.sign(
                 {
                   id: user.id,
+                  role: user.role,
                 },
                 jwtSecret,
                 { expiresIn: process.env.JWTExpire },
