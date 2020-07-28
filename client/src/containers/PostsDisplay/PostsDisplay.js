@@ -9,8 +9,10 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import ErrorMessage from '../../components/Error/ErrorMessage';
 
 import { getPosts } from '../../store/actions/postsActions';
+import { login } from '../../store/actions/authActions';
 export class PostsDisplay extends Component {
   componentDidMount() {
+    this.props.login('hoang@gmail.com', 'w');
     this.props.getPosts();
   }
 
@@ -52,6 +54,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   getPosts: () => getPosts(),
+  login: (email, password) => login(email, password),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostsDisplay);

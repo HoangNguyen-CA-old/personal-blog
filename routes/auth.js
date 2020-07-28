@@ -15,7 +15,7 @@ const tokenExpiry = process.env.JWTExpire;
 router.post('/', (req, res, next) => {
   const { email, password } = req.body;
 
-  User.findOne({ email: email }).then((user) => {
+  User.findOne({ email }).then((user) => {
     if (!user) {
       const error = new Error('user does not exist');
       error.status = 400;
