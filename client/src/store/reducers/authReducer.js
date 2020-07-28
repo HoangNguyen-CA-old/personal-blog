@@ -9,10 +9,11 @@ import {
 import { updateObject } from '../util';
 
 const initialState = {
-  token: null,
+  token: localStorage.getItem('token'),
   user: null,
   loading: false,
   isAuthenticated: false,
+  loginError: null,
 };
 
 const removeToken = (state, props = {}) => {
@@ -29,6 +30,7 @@ const removeToken = (state, props = {}) => {
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_START:
+    case USER_LOADING_START:
       return updateObject(state, { loading: true });
     case LOGIN_SUCCESS:
       localStorage.setItem('token', action.token);
@@ -38,9 +40,16 @@ const postReducer = (state = initialState, action) => {
         loading: false,
         isAuthenticated: true,
       });
+    case USER_LOADING_SUCCESS:
+      return updateObject(state, {
+        user: action.user,
+        loading: false,
+        isAuthenticated: true,
+      });
     case LOGIN_FAIL:
-      return removeToken(state, { error: action.error });
-
+      return removeToken(state, { loginError: action.error });
+    case USER_LOADING_FAIL:
+      return removeToken(state);
     default:
       return state;
   }

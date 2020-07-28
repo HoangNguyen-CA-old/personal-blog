@@ -12,7 +12,6 @@ import { getPosts } from '../../store/actions/postsActions';
 import { login } from '../../store/actions/authActions';
 export class PostsDisplay extends Component {
   componentDidMount() {
-    this.props.login('hoang@gmail.com', 'w');
     this.props.getPosts();
   }
 

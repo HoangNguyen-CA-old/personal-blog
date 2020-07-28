@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -8,19 +9,33 @@ import AdminScreen from './containers/AdminScreen/AdminScreen';
 import FullPost from './containers/FullPost/FullPost';
 import EditedPost from './containers/EditedPost/EditedPost';
 
-function App() {
-  return (
-    <Router>
-      <Layout>
-        <Switch>
-          <Route path='/admin' component={AdminScreen}></Route>
-          <Route path='/article/:id' component={FullPost}></Route>
-          <Route path='/edit/:id' component={EditedPost}></Route>
-          <Route path='/' component={PostsDisplay} />
-        </Switch>
-      </Layout>
-    </Router>
-  );
+import { loadUser } from './store/actions/authActions';
+
+class App extends Component {
+  componentDidMount() {
+    this.props.loadUser();
+  }
+
+  render() {
+    return (
+      <Router>
+        <Layout>
+          <Switch>
+            <Route path='/admin' component={AdminScreen}></Route>
+            <Route path='/article/:id' component={FullPost}></Route>
+            <Route path='/edit/:id' component={EditedPost}></Route>
+            <Route path='/' component={PostsDisplay} />
+          </Switch>
+        </Layout>
+      </Router>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = {
+  loadUser: () => loadUser(),
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
