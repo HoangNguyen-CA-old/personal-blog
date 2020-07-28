@@ -13,42 +13,45 @@ const tokenExpiry = process.env.JWTExpire;
 // @desc attempts user login and sends back jwt
 // @access Public
 router.post('/', (req, res, next) => {
-  const { email, password } = req.body;
+  let { email, password } = req.body;
+  console.log(req.body);
 
-  User.findOne({ email }).then((user) => {
-    if (!user) {
-      const error = new Error('user does not exist');
-      error.status = 400;
-      return next(error);
-    }
-    //validate password
-    bcrypt.compare(password, user.password).then((match) => {
-      if (!match) {
-        const error = new Error('invalid password');
+  User.findOne({ email })
+    .then((user) => {
+      if (!user) {
+        const error = new Error('user does not exist');
         error.status = 400;
         return next(error);
       }
-      jwt.sign(
-        {
-          id: user.id,
-          role: user.role,
-        },
-        jwtSecret,
-        { expiresIn: tokenExpiry },
-        (err, token) => {
-          if (err) return next(err);
-          res.json({
-            token: token,
-            user: {
-              id: user.id,
-              username: user.username,
-              email: user.email,
-            },
-          });
+      //validate password
+      bcrypt.compare(password, user.password).then((match) => {
+        if (!match) {
+          const error = new Error('invalid password');
+          error.status = 400;
+          return next(error);
         }
-      );
-    });
-  });
+        jwt.sign(
+          {
+            id: user.id,
+            role: user.role,
+          },
+          jwtSecret,
+          { expiresIn: tokenExpiry },
+          (err, token) => {
+            if (err) return next(err);
+            res.json({
+              token: token,
+              user: {
+                id: user.id,
+                username: user.username,
+                email: user.email,
+              },
+            });
+          }
+        );
+      });
+    })
+    .catch((err) => next(err));
 });
 
 // @route get api/auth/

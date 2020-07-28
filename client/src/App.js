@@ -8,6 +8,7 @@ import Layout from './containers/Layout/Layout';
 import AdminScreen from './containers/AdminScreen/AdminScreen';
 import FullPost from './containers/FullPost/FullPost';
 import EditedPost from './containers/EditedPost/EditedPost';
+import Login from './containers/Auth/Login/Login';
 
 import { loadUser } from './store/actions/authActions';
 
@@ -21,7 +22,8 @@ class App extends Component {
       <Router>
         <Layout>
           <Switch>
-            <Route path='/admin' component={AdminScreen}></Route>
+            <Route exact path='/login' component={Login}></Route>
+            <Route exact path='/admin' component={AdminScreen}></Route>
             <Route path='/article/:id' component={FullPost}></Route>
             <Route path='/edit/:id' component={EditedPost}></Route>
             <Route path='/' component={PostsDisplay} />
