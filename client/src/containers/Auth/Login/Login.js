@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './Login.module.scss';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import FormInputs from '../../../components/UI/FormInputs/FormInputs';
 import Button from '../../../components/UI/Button/Button';
@@ -50,19 +51,26 @@ export class Login extends Component {
   render() {
     return (
       <div className={styles.Container}>
+        {this.props.isAuthenticated ? <Redirect to='/admin'></Redirect> : ''}
+        <h1 className={styles.Title}>Log In</h1>
         <form className={styles.Form} onSubmit={this.handleSubmit}>
           <FormInputs
             controls={this.state.controls}
             handleInputChanged={this.handleInputChanged}
           ></FormInputs>
-          <Button type='submit'>Submit</Button>
+
+          <Button type='submit' full>
+            Submit
+          </Button>
         </form>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
 const mapDispatchToProps = {
   login: (email, password) => login(email, password),

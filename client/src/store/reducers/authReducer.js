@@ -5,6 +5,7 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  LOGOUT,
 } from '../actions/actionTypes';
 import { updateObject } from '../util';
 
@@ -48,8 +49,10 @@ const postReducer = (state = initialState, action) => {
       });
     case LOGIN_FAIL:
       return removeToken(state, { loginError: action.error });
+    case LOGOUT:
     case USER_LOADING_FAIL:
       return removeToken(state);
+
     default:
       return state;
   }

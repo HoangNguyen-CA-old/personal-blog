@@ -6,6 +6,7 @@ import {
   USER_LOADING_START,
   USER_LOADING_SUCCESS,
   USER_LOADING_FAIL,
+  LOGOUT,
 } from './actionTypes';
 
 import { tokenConfig } from '../util';
@@ -49,4 +50,10 @@ export const loadUser = () => (dispatch, getState) => {
         type: USER_LOADING_FAIL,
       });
     });
+};
+
+export const logout = () => {
+  return {
+    type: LOGOUT,
+  };
 };
