@@ -5,6 +5,7 @@ import styles from './EditedPost.module.scss';
 
 import FormInputs from '../../components/UI/FormInputs/FormInputs';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Button from '../../components/UI/Button/Button';
 
 import { getPost, editPost } from '../../store/actions/postActions';
 
@@ -70,7 +71,8 @@ class EditedPost extends Component {
     return prevState;
   }
 
-  handleEditPost = () => {
+  handleEditPost = (e) => {
+    e.preventDefault();
     this.props.editPost(
       this.props.post._id,
       this.state.controls.title.value,
@@ -91,10 +93,13 @@ class EditedPost extends Component {
       content = (
         <div className={styles.EditedPost}>
           <h1 className={styles.Title}>Editing Post</h1>
-          <FormInputs
-            controls={this.state.controls}
-            handleInputChanged={this.handleInputChanged}
-          ></FormInputs>
+          <form onSubmit={this.handleEditPost}>
+            <FormInputs
+              controls={this.state.controls}
+              handleInputChanged={this.handleInputChanged}
+            ></FormInputs>
+            <Button type='submit'>Edit</Button>
+          </form>
         </div>
       );
     }

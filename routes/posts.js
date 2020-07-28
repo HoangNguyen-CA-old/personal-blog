@@ -1,5 +1,7 @@
 const router = require('express').Router();
 
+const authMW = require('../middleware/auth');
+
 const Post = require('../models/post');
 
 router.post('/', (req, res) => {
@@ -20,7 +22,7 @@ router.post('/', (req, res) => {
     .catch((err) => res.status(400).json({ msg: "couldn't save post" }));
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', authMW, (req, res) => {
   const { title, tags, markDown, image } = req.body;
   if (title == null || tags == null || markDown == null || image == null) {
     return res.status(400).json({ msg: 'information missing' });

@@ -4,17 +4,28 @@
 .MarkDownContainer {
   max-width: 75ch;
   line-height: 130%;
-  font-size: 1.1rem;
-  letter-spacing: 0.05em;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
 
   width: 80%;
   margin: 4em auto;
   line-height: 130%;
-  h1 {
-    font-weight: 500;
-    margin-bottom: 0.2em;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    margin: 1em 0;
+  }
+
+  ul {
+    margin: 1em 0;
+    padding-left: 40px;
   }
 
   p {
+    margin: 1em 0;
   }
 }

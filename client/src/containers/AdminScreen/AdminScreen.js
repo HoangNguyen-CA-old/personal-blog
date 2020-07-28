@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './AdminScreen.module.scss';
-
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import AdminPost from '../../components/AdminPost/AdminPost';
 import Spinner from '../../components/UI/Spinner/Spinner';
@@ -24,12 +24,18 @@ export class AdminScreen extends Component {
       let adminPosts = this.props.posts.map((post) => {
         return (
           <AdminPost
+            key={post._id}
             post={post}
             handleEditPost={() => this.handleEditPost(post._id)}
           ></AdminPost>
         );
       });
-      content = <div className={styles.Container}>{adminPosts}</div>;
+      content = (
+        <div className={styles.Container}>
+          {this.props.isAuthenticated ? null : <Redirect to='/'></Redirect>}
+          {adminPosts}
+        </div>
+      );
     }
 
     return <>{content}</>;
@@ -39,6 +45,7 @@ export class AdminScreen extends Component {
 const mapStateToProps = (state) => ({
   posts: state.posts.posts,
   loading: state.posts.loading,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 const mapDispatchToProps = {

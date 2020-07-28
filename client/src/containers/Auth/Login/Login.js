@@ -59,7 +59,7 @@ export class Login extends Component {
             handleInputChanged={this.handleInputChanged}
           ></FormInputs>
 
-          <Button type='submit' full>
+          <Button type='submit' full={1}>
             Submit
           </Button>
         </form>

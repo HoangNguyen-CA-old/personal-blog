@@ -7,11 +7,19 @@ import {
   GET_POST_SUCCESS,
 } from './actionTypes';
 import axios from 'axios';
+import { tokenConfig } from '../util';
 
-export const editPost = (id, title, image, tags, markDown) => (dispatch) => {
+export const editPost = (id, title, image, tags, markDown) => (
+  dispatch,
+  getState
+) => {
   dispatch({ type: EDIT_POST_START });
   axios
-    .put(`/posts/${id}`, { title, image, tags, markDown })
+    .put(
+      `/posts/${id}`,
+      { title, image, tags, markDown },
+      tokenConfig(getState)
+    )
     .then((res) => {
       dispatch({ type: EDIT_POST_SUCCESS });
     })

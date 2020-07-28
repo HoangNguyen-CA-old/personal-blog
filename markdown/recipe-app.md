@@ -1,4 +1,4 @@
-# Recipe search app \n
+# Recipe search app
 
 Before starting this project, I had very limited knowledge about React. I wanted to go more in-depth with React and found that the MERN stack would be perfect since it would allow me to focus on Javascript. A 3rd party API (<https://www.edamam.com/>) was used to get the recipes.
 
