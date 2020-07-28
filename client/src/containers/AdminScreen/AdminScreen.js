@@ -12,12 +12,22 @@ export class AdminScreen extends Component {
   componentDidMount() {
     this.props.getPosts();
   }
+
+  handleEditPost = (id) => {
+    this.props.history.push(`/edit/${id}`);
+  };
+
   render() {
     let content = <Spinner></Spinner>;
 
     if (!this.props.loading) {
       let adminPosts = this.props.posts.map((post) => {
-        return <AdminPost post={post}></AdminPost>;
+        return (
+          <AdminPost
+            post={post}
+            handleEditPost={() => this.handleEditPost(post._id)}
+          ></AdminPost>
+        );
       });
       content = <div className={styles.Container}>{adminPosts}</div>;
     }

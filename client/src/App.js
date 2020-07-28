@@ -6,6 +6,7 @@ import PostsDisplay from './containers/PostsDisplay/PostsDisplay';
 import Layout from './containers/Layout/Layout';
 import AdminScreen from './containers/AdminScreen/AdminScreen';
 import FullPost from './containers/FullPost/FullPost';
+import EditedPost from './containers/EditedPost/EditedPost';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Switch>
           <Route path='/admin' component={AdminScreen}></Route>
           <Route path='/article/:id' component={FullPost}></Route>
+          <Route path='/edit/:id' component={EditedPost}></Route>
           <Route path='/' component={PostsDisplay} />
         </Switch>
       </Layout>

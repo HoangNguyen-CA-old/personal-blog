@@ -5,7 +5,11 @@ import Button from '../UI/Button/Button';
 const AdminPost = (props) => {
   return (
     <div className={styles.Container}>
-      <Button>Edit</Button>
+      <h6 className={styles.Title}>Title: {props.post.title}</h6>
+      <div>
+        <Button onClick={props.handleEditPost}>Edit</Button>
+        <Button>Delete</Button>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import styles from './EditedPost.module.scss';
@@ -6,7 +6,9 @@ import styles from './EditedPost.module.scss';
 import FormInputs from '../../components/UI/FormInputs/FormInputs';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
-class EditedPost {
+import { getPost, editPost } from '../../store/actions/postActions';
+
+class EditedPost extends Component {
   state = {
     post: null,
     controls: {
@@ -78,9 +80,14 @@ class EditedPost {
     );
   };
 
+  componentDidMount() {
+    let id = this.props.match.params.id;
+    this.props.getPost(id);
+  }
+
   render() {
     let content = <Spinner />;
-    if (this.props.loading === false) {
+    if (!this.props.loading) {
       content = (
         <div className={styles.EditedPost}>
           <h1 className={styles.Title}>Editing Post</h1>
@@ -97,8 +104,13 @@ class EditedPost {
 
 const mapStateToProps = (state) => ({
   post: state.post.post,
+  loading: state.post.loading,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  getPost: (id) => getPost(id),
+  editPost: (id, title, image, tags, markDown) =>
+    editPost(id, title, image, tags, markDown),
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditedPost);

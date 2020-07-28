@@ -1,4 +1,8 @@
 @import '../../theme';
 
 .Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3em 1em;
 }
