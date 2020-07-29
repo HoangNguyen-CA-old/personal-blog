@@ -18,24 +18,21 @@ export class AdminScreen extends Component {
   };
 
   render() {
-    let content = <Spinner></Spinner>;
-
-    if (!this.props.loading) {
-      let adminPosts = this.props.posts.map((post) => {
-        return (
-          <AdminPost
-            key={post._id}
-            post={post}
-            handleEditPost={() => this.handleEditPost(post._id)}
-          ></AdminPost>
-        );
-      });
-      content = (
-        <div className={styles.Container}>
-          {this.props.isAuthenticated ? null : <Redirect to='/'></Redirect>}
-          {adminPosts}
-        </div>
+    let adminPosts = this.props.posts.map((post) => {
+      return (
+        <AdminPost
+          key={post._id}
+          post={post}
+          handleEditPost={() => this.handleEditPost(post._id)}
+        ></AdminPost>
       );
+    });
+    let content = <div className={styles.Container}>{adminPosts}</div>;
+
+    if (this.props.loading) {
+      content = <Spinner></Spinner>;
+    } else if (!this.props.isAuthenticated) {
+      content = <Redirect to='/'></Redirect>;
     }
 
     return <>{content}</>;

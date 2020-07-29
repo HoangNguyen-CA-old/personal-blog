@@ -7,8 +7,12 @@ const AdminPost = (props) => {
     <div className={styles.Container}>
       <h6 className={styles.Title}>Title: {props.post.title}</h6>
       <div>
-        <Button onClick={props.handleEditPost}>Edit</Button>
-        <Button>Delete</Button>
+        <span className={styles.ButtonContainer}>
+          <Button onClick={props.handleEditPost}>Edit</Button>
+        </span>
+        <span className={styles.ButtonContainer}>
+          <Button>Delete</Button>
+        </span>
       </div>
     </div>
   );

@@ -5,9 +5,9 @@ import { Redirect } from 'react-router-dom';
 
 import FormInputs from '../../../components/UI/FormInputs/FormInputs';
 import Button from '../../../components/UI/Button/Button';
+import Spinner from '../../../components/UI/Spinner/Spinner';
 
 import { login } from '../../../store/actions/authActions';
-import { editPost } from '../../../store/actions/postActions';
 
 export class Login extends Component {
   state = {
@@ -49,20 +49,29 @@ export class Login extends Component {
   };
 
   render() {
+    let content = (
+      <form className={styles.Form} onSubmit={this.handleSubmit}>
+        <FormInputs
+          controls={this.state.controls}
+          handleInputChanged={this.handleInputChanged}
+        ></FormInputs>
+
+        <Button type='submit' full={1}>
+          Submit
+        </Button>
+      </form>
+    );
+
+    if (this.props.loading) {
+      content = <Spinner />;
+    } else if (this.props.isAuthenticated) {
+      content = <Redirect to='/admin'></Redirect>;
+    }
+
     return (
       <div className={styles.Container}>
-        {this.props.isAuthenticated ? <Redirect to='/admin'></Redirect> : ''}
         <h1 className={styles.Title}>Log In</h1>
-        <form className={styles.Form} onSubmit={this.handleSubmit}>
-          <FormInputs
-            controls={this.state.controls}
-            handleInputChanged={this.handleInputChanged}
-          ></FormInputs>
-
-          <Button type='submit' full={1}>
-            Submit
-          </Button>
-        </form>
+        {content}
       </div>
     );
   }
@@ -70,6 +79,7 @@ export class Login extends Component {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  loading: state.auth.loading,
 });
 
 const mapDispatchToProps = {
