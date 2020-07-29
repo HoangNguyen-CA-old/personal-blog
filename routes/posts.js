@@ -4,7 +4,7 @@ const authMW = require('../middleware/auth');
 
 const Post = require('../models/post');
 
-router.post('/', (req, res) => {
+router.post('/', authMW, (req, res) => {
   const { title, tags, markDown, image } = req.body;
 
   const newPost = new Post({
