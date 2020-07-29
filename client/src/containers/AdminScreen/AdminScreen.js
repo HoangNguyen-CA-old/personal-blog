@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 
 import AdminPost from '../../components/AdminPost/AdminPost';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Button from '../../components/UI/Button/Button';
 
 import { getPosts } from '../../store/actions/postsActions';
 
@@ -27,7 +28,14 @@ export class AdminScreen extends Component {
         ></AdminPost>
       );
     });
-    let content = <div className={styles.Container}>{adminPosts}</div>;
+    let content = (
+      <div className={styles.Container}>
+        <span className={styles.AddContainer}>
+          <Button>Add Empty Post</Button>
+        </span>
+        {adminPosts}
+      </div>
+    );
 
     if (this.props.loading) {
       content = <Spinner></Spinner>;

@@ -4,7 +4,8 @@
   background-color: $light;
   border-radius: 3px;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
-  width: 80%;
+  width: 90%;
+  max-width: 1000px;
   display: flex;
 
   justify-content: space-between;
@@ -13,10 +14,14 @@
 }
 
 .Title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 500;
 }
 
+.Buttons {
+  display: flex;
+}
+
 .ButtonContainer {
-  margin-left: 1em;
+  margin: 0.2em 0 0.2em 1em;
 }
