@@ -36,7 +36,7 @@ router.put('/:id', authMW, (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', authMW, (req, res) => {
   Post.findByIdAndDelete(req.params.id)
     .then(() => {
       res.json({ msg: 'success' });

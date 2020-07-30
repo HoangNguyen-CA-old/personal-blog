@@ -7,7 +7,7 @@ import AdminPost from '../../components/AdminPost/AdminPost';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
 
-import { addPost } from '../../store/actions/postActions';
+import { addPost, deletePost } from '../../store/actions/postActions';
 import { getPosts } from '../../store/actions/postsActions';
 
 export class AdminScreen extends Component {
@@ -26,6 +26,7 @@ export class AdminScreen extends Component {
           key={post._id}
           post={post}
           handleEditPost={() => this.handleEditPost(post._id)}
+          handleDeletePost={() => this.props.deletePost(post._id)}
         ></AdminPost>
       );
     });
@@ -57,6 +58,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   getPosts: () => getPosts(),
   addPost: () => addPost(),
+  deletePost: (id) => deletePost(id),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminScreen);

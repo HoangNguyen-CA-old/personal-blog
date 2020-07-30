@@ -11,7 +11,7 @@ const AdminPost = (props) => {
           <Button onClick={props.handleEditPost}>Edit</Button>
         </span>
         <div className={styles.ButtonContainer}>
-          <Button>Delete</Button>
+          <Button onClick={props.handleDeletePost}>Delete</Button>
         </div>
       </div>
     </div>

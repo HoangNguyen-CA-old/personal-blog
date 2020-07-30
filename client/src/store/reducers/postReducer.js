@@ -8,6 +8,9 @@ import {
   GET_POST_START,
   GET_POST_SUCCESS,
   GET_POST_FAIL,
+  DELETE_POST_START,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_FAIL,
 } from '../actions/actionTypes';
 import { updateObject } from '../util';
 
@@ -31,6 +34,13 @@ const postReducer = (state = initialState, action) => {
     case ADD_POST_SUCCESS:
       return updateObject(state, { loading: false });
     case ADD_POST_FAIL:
+      return updateObject(state, { loading: false, error: action.error });
+
+    case DELETE_POST_START:
+      return updateObject(state, { loading: true });
+    case DELETE_POST_SUCCESS:
+      return updateObject(state, { loading: false });
+    case DELETE_POST_FAIL:
       return updateObject(state, { loading: false, error: action.error });
 
     case GET_POST_START:
