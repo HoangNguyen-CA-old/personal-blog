@@ -7,6 +7,7 @@ import AdminPost from '../../components/AdminPost/AdminPost';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
 
+import { addPost } from '../../store/actions/postActions';
 import { getPosts } from '../../store/actions/postsActions';
 
 export class AdminScreen extends Component {
@@ -31,7 +32,7 @@ export class AdminScreen extends Component {
     let content = (
       <div className={styles.Container}>
         <span className={styles.AddContainer}>
-          <Button>Add Empty Post</Button>
+          <Button onClick={this.props.addPost}>Add Empty Post</Button>
         </span>
         {adminPosts}
       </div>
@@ -55,6 +56,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   getPosts: () => getPosts(),
+  addPost: () => addPost(),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminScreen);

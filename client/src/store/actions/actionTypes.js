@@ -2,6 +2,10 @@ export const GET_POSTS_START = 'GET_POSTS_START';
 export const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS';
 export const GET_POSTS_FAIL = 'GET_POSTS_FAIL';
 
+export const ADD_POST_START = 'ADD_POST_START';
+export const ADD_POST_FAIL = 'ADD_POST_FAIL';
+export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
+
 export const EDIT_POST_START = 'EDIT_POST_START';
 export const EDIT_POST_FAIL = 'EDIT_POST_FAIL';
 export const EDIT_POST_SUCCESS = 'EDIT_POST_sUCCESS';
