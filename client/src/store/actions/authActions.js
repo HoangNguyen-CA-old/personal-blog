@@ -6,6 +6,7 @@ import {
   USER_LOADING_START,
   USER_LOADING_SUCCESS,
   USER_LOADING_FAIL,
+  CLEAR_AUTH_ERRORS,
   LOGOUT,
 } from './actionTypes';
 
@@ -50,6 +51,10 @@ export const loadUser = () => (dispatch, getState) => {
         type: USER_LOADING_FAIL,
       });
     });
+};
+
+export const clearAuthErrors = () => {
+  return { type: CLEAR_AUTH_ERRORS };
 };
 
 export const logout = () => {

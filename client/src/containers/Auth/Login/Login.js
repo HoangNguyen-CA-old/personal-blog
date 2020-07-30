@@ -7,7 +7,7 @@ import FormInputs from '../../../components/UI/FormInputs/FormInputs';
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 
-import { login } from '../../../store/actions/authActions';
+import { login, clearAuthErrors } from '../../../store/actions/authActions';
 
 export class Login extends Component {
   state = {
@@ -48,9 +48,17 @@ export class Login extends Component {
     );
   };
 
+  componentDidMount() {
+    this.props.clearAuthErrors();
+  }
+
   render() {
     let content = (
       <form className={styles.Form} onSubmit={this.handleSubmit}>
+        {this.props.error ? (
+          <p className={styles.ErrorMessage}> {this.props.error}</p>
+        ) : null}
+
         <FormInputs
           controls={this.state.controls}
           handleInputChanged={this.handleInputChanged}
@@ -80,10 +88,12 @@ export class Login extends Component {
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   loading: state.auth.loading,
+  error: state.auth.loginError,
 });
 
 const mapDispatchToProps = {
   login: (email, password) => login(email, password),
+  clearAuthErrors: () => clearAuthErrors(),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

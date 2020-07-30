@@ -6,6 +6,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  CLEAR_AUTH_ERRORS,
 } from '../actions/actionTypes';
 import { updateObject } from '../util';
 
@@ -52,6 +53,8 @@ const postReducer = (state = initialState, action) => {
     case LOGOUT:
     case USER_LOADING_FAIL:
       return removeToken(state);
+    case CLEAR_AUTH_ERRORS:
+      return updateObject(state, { loginError: null });
 
     default:
       return state;
